@@ -5,7 +5,7 @@ namespace App\Services\Shared;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 
-class DataService
+final class DataService
 {
     /**
      * @param string $dateFrom

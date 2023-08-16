@@ -5,7 +5,7 @@ namespace App\Services\Order;
 use App\Actions\Order\CreateOrderAction;
 use App\Services\Shared\DataService;
 
-class OrderService
+final class OrderService
 {
     /**
      * @var DataService $service
