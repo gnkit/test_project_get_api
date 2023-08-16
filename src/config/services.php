@@ -31,4 +31,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'laravel_api' => [
+        'scheme' => env('EXTERNAL_API_PROTOCOL'),
+        'host' => env('EXTERNAL_API_HOST'),
+        'key' => env('EXTERNAL_API_KEY'),
+    ],
+
 ];
