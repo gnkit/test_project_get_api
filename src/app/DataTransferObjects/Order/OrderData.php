@@ -14,7 +14,7 @@ final class OrderData extends Data
      * @param Carbon $last_change_date
      * @param string $supplier_article
      * @param string $tech_size
-     * @param int $barcode
+     * @param string $barcode
      * @param int $total_price
      * @param int $discount_percent
      * @param string $warehouse_name
@@ -35,7 +35,7 @@ final class OrderData extends Data
         public readonly Carbon  $last_change_date,
         public readonly string  $supplier_article,
         public readonly string  $tech_size,
-        public readonly int     $barcode,
+        public readonly string  $barcode,
         public readonly int     $total_price,
         public readonly int     $discount_percent,
         public readonly string  $warehouse_name,
