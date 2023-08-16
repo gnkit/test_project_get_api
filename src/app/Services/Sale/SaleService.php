@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Services\Order;
+namespace App\Services\Sale;
 
-use App\Actions\Order\CreateOrderAction;
+use App\Actions\Sale\CreateSaleAction;
 use App\Services\Shared\DataService;
 
-final class OrderService
+final class SaleService
 {
     /**
      * @var DataService $service
@@ -14,7 +14,7 @@ final class OrderService
     /**
      * @var string
      */
-    private string $path = 'api/orders';
+    private string $path = 'api/sales';
 
     /**
      * @param DataService $dataService
@@ -38,11 +38,10 @@ final class OrderService
 
         foreach ($chunkData as $chunk) {
             foreach ($chunk as $datum) {
-                CreateOrderAction::execute($datum);
+                CreateSaleAction::execute($datum);
             }
         }
 
         return count($apiData);
     }
-
 }

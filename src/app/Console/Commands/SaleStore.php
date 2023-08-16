@@ -2,27 +2,27 @@
 
 namespace App\Console\Commands;
 
-use App\Services\Order\OrderService;
+use App\Services\Sale\SaleService;
 use Illuminate\Console\Command;
 use Throwable;
 
-class OrderStore extends Command
+class SaleStore extends Command
 {
     /**
      * @var string
      */
-    protected $signature = 'app:order-store {dateFrom} {dateTo} {limit=500}';
+    protected $signature = 'app:sale-store {dateFrom} {dateTo} {limit=500}';
 
     /**
      * @var string
      */
-    protected $description = 'Order store from external api';
+    protected $description = 'Sale store from external api';
 
     /**
-     * @param OrderService $orderService
+     * @param SaleService $saleService
      * @return void
      */
-    public function handle(OrderService $orderService): void
+    public function handle(SaleService $saleService): void
     {
         try {
             $dateFrom = $this->argument('dateFrom');
@@ -33,7 +33,7 @@ class OrderStore extends Command
                 $limit = 500;
             }
 
-            $count = $orderService->store($dateFrom, $dateTo, $limit);
+            $count = $saleService->store($dateFrom, $dateTo, $limit);
 
             $message = 'Data: from ' . $dateFrom . ' to ' . $dateTo . ', Limit: ' . $limit . PHP_EOL . 'Count: ' . $count . PHP_EOL;
 

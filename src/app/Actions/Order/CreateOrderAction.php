@@ -10,7 +10,6 @@ final class CreateOrderAction
     /**
      * @param $datum
      * @return Order
-     * @var Order $order
      */
     public static function execute($datum): Order
     {
