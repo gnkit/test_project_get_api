@@ -6,7 +6,7 @@ host:		sql.freedb.tech\
 port:		3306\
 db_name:	freedb_laravel_apitest\
 db_user:	freedb_laravel_apitest\
-db_pass:	A?hhWCsA3yAPDY5\
+db_pass:	A?hhWCsA3yAPDY5<br>
 
 
 git clone git@github.com:gnkit/test_project_get_api.git\
