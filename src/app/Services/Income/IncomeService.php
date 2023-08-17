@@ -3,26 +3,14 @@
 namespace App\Services\Income;
 
 use App\Actions\Income\CreateIncomeAction;
-use App\Services\Shared\DataService;
+use App\Services\Shared\BaseService;
 
-final class IncomeService
+final class IncomeService extends BaseService
 {
-    /**
-     * @var DataService $service
-     */
-    private DataService $service;
     /**
      * @var string
      */
-    private string $path = 'api/incomes';
-
-    /**
-     * @param DataService $dataService
-     */
-    public function __construct(DataService $dataService)
-    {
-        $this->service = $dataService;
-    }
+    protected string $path = 'api/incomes';
 
     /**
      * @param string $dateFrom

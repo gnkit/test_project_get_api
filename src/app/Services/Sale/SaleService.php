@@ -3,26 +3,14 @@
 namespace App\Services\Sale;
 
 use App\Actions\Sale\CreateSaleAction;
-use App\Services\Shared\DataService;
+use App\Services\Shared\BaseService;
 
-final class SaleService
+final class SaleService extends BaseService
 {
-    /**
-     * @var DataService $service
-     */
-    private DataService $service;
     /**
      * @var string
      */
-    private string $path = 'api/sales';
-
-    /**
-     * @param DataService $dataService
-     */
-    public function __construct(DataService $dataService)
-    {
-        $this->service = $dataService;
-    }
+    protected string $path = 'api/sales';
 
     /**
      * @param string $dateFrom

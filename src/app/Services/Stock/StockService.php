@@ -3,26 +3,14 @@
 namespace App\Services\Stock;
 
 use App\Actions\Stock\CreateStockAction;
-use App\Services\Shared\DataService;
+use App\Services\Shared\BaseService;
 
-final class StockService
+final class StockService extends BaseService
 {
-    /**
-     * @var DataService $service
-     */
-    private DataService $service;
     /**
      * @var string
      */
-    private string $path = 'api/stocks';
-
-    /**
-     * @param DataService $dataService
-     */
-    public function __construct(DataService $dataService)
-    {
-        $this->service = $dataService;
-    }
+    protected string $path = 'api/stocks';
 
     /**
      * @param string $dateFrom

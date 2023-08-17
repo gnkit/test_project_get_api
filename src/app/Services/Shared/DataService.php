@@ -4,17 +4,47 @@ namespace App\Services\Shared;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
+use phpDocumentor\Reflection\Types\This;
 
 final class DataService
 {
     /**
-     * @param string $path
+     * @var string
+     */
+    private string $path = 'api/';
+
+    /**
+     * @param string $endpoint
      * @param string $dateFrom
      * @param string $dateTo
      * @param int $limit
+     * @return int
+     */
+    public function storeService(string $endpoint, string $dateFrom, string $dateTo, int $limit): int
+    {
+        $action = $this->getAction($endpoint);
+
+        $apiData = $this->getApiData($this->path . $endpoint, $dateFrom, $dateTo, $limit);
+
+        $chunkData = $this->splitToChunk($limit, $apiData);
+
+        foreach ($chunkData as $chunk) {
+            foreach ($chunk as $datum) {
+                $action::execute($datum);
+            }
+        }
+
+        return count($apiData);
+    }
+
+    /**
+     * @param string $path
+     * @param string $dateFrom
+     * @param string|null $dateTo
+     * @param int $limit
      * @return array
      */
-    public function getApiData(string $path, string $dateFrom, string $dateTo, int $limit): array
+    public function getApiData(string $path, string $dateFrom, ?string $dateTo, int $limit): array
     {
         $host = config('services.laravel_api.scheme') . config('services.laravel_api.host');
         $key = config('services.laravel_api.key');
@@ -50,5 +80,16 @@ final class DataService
         }
 
         return $collection->chunk($quantity);
+    }
+
+    /**
+     * @param $endpoint
+     * @return string
+     */
+    private function getAction($endpoint): string
+    {
+        $actionName = ucfirst(substr($endpoint, 0, -1));
+
+        return 'App\Actions\\' . $actionName . '\Create' . $actionName . 'Action';
     }
 }

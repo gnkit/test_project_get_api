@@ -3,26 +3,14 @@
 namespace App\Services\Order;
 
 use App\Actions\Order\CreateOrderAction;
-use App\Services\Shared\DataService;
+use App\Services\Shared\BaseService;
 
-final class OrderService
+final class OrderService extends BaseService
 {
-    /**
-     * @var DataService $service
-     */
-    private DataService $service;
     /**
      * @var string
      */
-    private string $path = 'api/orders';
-
-    /**
-     * @param DataService $dataService
-     */
-    public function __construct(DataService $dataService)
-    {
-        $this->service = $dataService;
-    }
+    protected string $path = 'api/orders';
 
     /**
      * @param string $dateFrom
@@ -44,5 +32,4 @@ final class OrderService
 
         return count($apiData);
     }
-
 }
