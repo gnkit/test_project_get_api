@@ -18,4 +18,15 @@ final class OfficeData extends Data
     )
     {
     }
+
+    /**
+     * @return array[]
+     */
+    public static function rules(): array
+    {
+        return [
+            'name' => ['required', 'string', 'max:255'],
+            'company_id' => ['required', 'integer', 'exists:companies,id'],
+        ];
+    }
 }

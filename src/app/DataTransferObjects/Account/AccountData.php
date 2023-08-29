@@ -16,4 +16,14 @@ final class AccountData extends Data
     )
     {
     }
+
+    /**
+     * @return array[]
+     */
+    public static function rules(): array
+    {
+        return [
+            'office_id' => ['required', 'integer', 'exists:offices,id'],
+        ];
+    }
 }

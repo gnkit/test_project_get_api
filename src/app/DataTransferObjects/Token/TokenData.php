@@ -20,4 +20,16 @@ final class TokenData extends Data
     )
     {
     }
+
+    /**
+     * @return array[]
+     */
+    public static function rules(): array
+    {
+        return [
+            'account_id' => ['required', 'integer', 'exists:companies,id'],
+            'api_service_id' => ['required', 'integer', 'exists:api_services,id'],
+            'value' => ['required', 'string', 'max:512'],
+        ];
+    }
 }

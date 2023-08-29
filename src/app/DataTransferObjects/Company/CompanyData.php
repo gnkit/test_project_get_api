@@ -16,4 +16,14 @@ final class CompanyData extends Data
     )
     {
     }
+
+    /**
+     * @return array[]
+     */
+    public static function rules(): array
+    {
+        return [
+            'name' => ['required', 'string', 'max:255'],
+        ];
+    }
 }
