@@ -12,6 +12,7 @@ return new class extends Migration {
     {
         Schema::create('accounts', function (Blueprint $table) {
             $table->id();
+            $table->string('username');
             $table->unsignedBigInteger('office_id');
             $table->foreign('office_id')->references('id')->on('offices')->onDelete('cascade');
             $table->unsignedBigInteger('user_id');

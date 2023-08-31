@@ -8,10 +8,10 @@ use App\Models\Company;
 final class UpsertCompanyAction
 {
     /**
-     * @param $datum
+     * @param array $datum
      * @return Company
      */
-    public static function execute($datum): Company
+    public static function execute(array $datum): Company
     {
         $data = CompanyData::validateAndCreate($datum);
 

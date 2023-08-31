@@ -2,7 +2,7 @@
 
 namespace App\Actions\Account;
 
-use App\DataTransferObjects\AccountData\AccountData;
+use App\DataTransferObjects\Account\AccountData;
 use App\Models\Account;
 
 final class UpsertAccountAction
@@ -20,7 +20,9 @@ final class UpsertAccountAction
                 'id' => $data->id,
             ],
             [
+                'username' => $data->username,
                 'office_id' => $data->office_id,
+                'user_id' => $data->user_id,
             ],
         );
     }
