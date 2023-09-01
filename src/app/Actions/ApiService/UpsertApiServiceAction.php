@@ -21,6 +21,7 @@ final class UpsertApiServiceAction
             ],
             [
                 'name' => $data->name,
+                'token_type_id' => $data->token_type_id,
             ],
         );
     }

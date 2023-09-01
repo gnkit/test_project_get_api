@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Token extends Model
 {
@@ -34,13 +33,5 @@ class Token extends Model
     public function apiService(): BelongsTo
     {
         return $this->belongsTo(ApiService::class);
-    }
-
-    /**
-     * @return HasMany
-     */
-    public function tokenTypes(): HasMany
-    {
-        return $this->hasMany(TokenType::class);
     }
 }

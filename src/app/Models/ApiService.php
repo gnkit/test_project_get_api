@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class ApiService extends Model
@@ -15,6 +16,7 @@ class ApiService extends Model
      */
     protected $fillable = [
         'name',
+        'token_type_id',
     ];
 
     /**
@@ -23,5 +25,13 @@ class ApiService extends Model
     public function token(): HasOne
     {
         return $this->hasOne(Token::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function tokenTypes(): HasMany
+    {
+        return $this->hasMany(TokenType::class);
     }
 }

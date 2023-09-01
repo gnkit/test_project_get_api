@@ -13,6 +13,8 @@ return new class extends Migration {
         Schema::create('api_services', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->unsignedBigInteger('token_type_id');
+            $table->foreign('token_type_id')->references('id')->on('token_types')->onDelete('cascade');
             $table->timestamps();
         });
     }
