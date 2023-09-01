@@ -4,8 +4,10 @@ namespace App\Console\Commands;
 
 use App\Actions\Account\UpsertAccountAction;
 use App\Actions\Office\GetIdNameOfficeAction;
-use App\Actions\User\GetIdNameUserAction;
+use App\Actions\User\UpsertUserAction;
+use App\Models\User;
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 use Throwable;
 use function Laravel\Prompts\select;
 use function Laravel\Prompts\text;
@@ -32,24 +34,45 @@ class CreateAccount extends Command
     public function handle(): void
     {
         try {
-            $datum['username'] = text(
-                label: 'Please, enter a username',
-                required: 'A username is required.'
+            $datum['name'] = text(
+                label: 'Please, enter a name',
+                required: 'A name is required.'
             );
 
-            $datum['office_id'] = select(
+            $datum['email'] = text(
+                label: 'Please, enter a email',
+                required: 'A email is required.',
+                validate: fn(string $value) => User::where('email', '=', $value)->first()
+                    ? 'An email already exists.'
+                    : null
+            );
+
+            $password_regex = "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/";
+            $datum['password'] = text(
+                label: 'Please, enter a password',
+                placeholder: 'Minimum 8 characters, one uppercase and one lowercase letter, one symbol, one digit ...',
+                required: 'A password is required.',
+                validate: fn(string $value) => (0 === preg_match($password_regex, $value))
+                    ? 'The password must be at least minimum 8 characters, one uppercase and one lowercase letter, one symbol, one digit.'
+                    : null
+            );
+
+            $datum['remember_token'] = Str::random(10);
+
+            $user = UpsertUserAction::execute($datum);
+
+            $datumAccount['username'] = $user->name;
+            $datumAccount['user_id'] = $user->id;
+
+            sleep(2);
+
+            $datumAccount['office_id'] = select(
                 label: 'Select office',
                 options: GetIdNameOfficeAction::execute('name', 'id'),
                 scroll: 10
             );
 
-            $datum['user_id'] = select(
-                label: 'Select user',
-                options: GetIdNameUserAction::execute('name', 'id'),
-                scroll: 10
-            );
-
-            $account = UpsertAccountAction::execute($datum);
+            $account = UpsertAccountAction::execute($datumAccount);
 
             $this->info($account?->username . ' successfully created.' . PHP_EOL);
 
