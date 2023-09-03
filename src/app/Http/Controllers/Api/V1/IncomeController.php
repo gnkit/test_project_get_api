@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Actions\Order\GetAllOrderAction;
+use App\Actions\Income\GetAllIncomeAction;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class IncomeController extends Controller
 {
     /**
      * @param Request $request
@@ -15,7 +15,7 @@ class OrderController extends Controller
      */
     public function index(Request $request): JsonResponse
     {
-        $data = GetAllOrderAction::execute($request->input('username'), $request->input('date'));
+        $data = GetAllIncomeAction::execute($request->input('username'), $request->input('date'));
 
         return response()->json(['data' => $data]);
     }

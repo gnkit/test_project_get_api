@@ -20,4 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('v1')->middleware(\App\Http\Middleware\AccountTokenIsValid::class)->group(function () {
     Route::get('/orders', [\App\Http\Controllers\Api\V1\OrderController::class, 'index']);
+    Route::get('/sales', [\App\Http\Controllers\Api\V1\SaleController::class, 'index']);
+    Route::get('/incomes', [\App\Http\Controllers\Api\V1\IncomeController::class, 'index']);
+    Route::get('/stocks', [\App\Http\Controllers\Api\V1\StockController::class, 'index']);
 });
