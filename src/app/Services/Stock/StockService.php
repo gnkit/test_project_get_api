@@ -2,7 +2,7 @@
 
 namespace App\Services\Stock;
 
-use App\Actions\Stock\CreateStockAction;
+use App\Actions\Stock\UpsertStockAction;
 use App\Services\Shared\BaseService;
 
 final class StockService extends BaseService
@@ -13,12 +13,13 @@ final class StockService extends BaseService
     protected string $path = 'api/stocks';
 
     /**
+     * @param string $username
      * @param string $dateFrom
      * @param string $dateTo
      * @param int $limit
      * @return int
      */
-    public function store(string $dateFrom, string $dateTo, int $limit): int
+    public function store(string $username, string $dateFrom, string $dateTo, int $limit): int
     {
         $apiData = $this->service->getApiData($this->path, $dateFrom, $dateTo, $limit);
 
@@ -26,7 +27,7 @@ final class StockService extends BaseService
 
         foreach ($chunkData as $chunk) {
             foreach ($chunk as $datum) {
-                CreateStockAction::execute($datum);
+                UpsertStockAction::execute($datum, $username);
             }
         }
 

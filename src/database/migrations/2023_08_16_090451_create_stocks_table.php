@@ -12,8 +12,6 @@ return new class extends Migration {
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('account_id');
-            $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
             $table->dateTime('date');
             $table->dateTime('last_change_date');
             $table->string('supplier_article');

@@ -9,6 +9,7 @@ final class IncomeData extends Data
 {
     /**
      * @param int|null $id
+     * @param int|null $account_id
      * @param int $income_id
      * @param string $number
      * @param Carbon $date
@@ -25,6 +26,7 @@ final class IncomeData extends Data
      */
     public function __construct(
         public readonly ?int   $id,
+        public readonly ?int   $account_id,
         public readonly int    $income_id,
         public readonly string $number,
         public readonly Carbon $date,

@@ -9,6 +9,7 @@ final class StockData extends Data
 {
     /**
      * @param int|null $id
+     * @param int|null $account_id
      * @param Carbon $date
      * @param Carbon $last_change_date
      * @param string $supplier_article
@@ -31,6 +32,7 @@ final class StockData extends Data
      */
     public function __construct(
         public readonly ?int   $id,
+        public readonly ?int   $account_id,
         public readonly Carbon $date,
         public readonly Carbon $last_change_date,
         public readonly string $supplier_article,

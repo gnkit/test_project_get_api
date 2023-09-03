@@ -2,7 +2,7 @@
 
 namespace App\Services\Income;
 
-use App\Actions\Income\CreateIncomeAction;
+use App\Actions\Income\UpsertIncomeAction;
 use App\Services\Shared\BaseService;
 
 final class IncomeService extends BaseService
@@ -13,12 +13,13 @@ final class IncomeService extends BaseService
     protected string $path = 'api/incomes';
 
     /**
+     * @param string $username
      * @param string $dateFrom
      * @param string $dateTo
      * @param int $limit
      * @return int
      */
-    public function store(string $dateFrom, string $dateTo, int $limit): int
+    public function store(string $username, string $dateFrom, string $dateTo, int $limit): int
     {
         $apiData = $this->service->getApiData($this->path, $dateFrom, $dateTo, $limit);
 
@@ -26,7 +27,7 @@ final class IncomeService extends BaseService
 
         foreach ($chunkData as $chunk) {
             foreach ($chunk as $datum) {
-                CreateIncomeAction::execute($datum);
+                UpsertIncomeAction::execute($datum, $username);
             }
         }
 

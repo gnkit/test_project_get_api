@@ -22,12 +22,13 @@ abstract class BaseService
     }
 
     /**
+     * @param string $username
      * @param string $dateFrom
      * @param string $dateTo
      * @param int $limit
      * @return int
      */
-    public function store(string $dateFrom, string $dateTo, int $limit): int
+    public function store(string $username, string $dateFrom, string $dateTo, int $limit): int
     {
     }
 }

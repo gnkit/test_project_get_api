@@ -12,8 +12,6 @@ return new class extends Migration {
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('account_id');
-            $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
             $table->string('g_number', 512);
             $table->dateTime('date');
             $table->dateTime('last_change_date');

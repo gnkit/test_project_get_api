@@ -2,7 +2,7 @@
 
 namespace App\Services\Order;
 
-use App\Actions\Order\CreateOrderAction;
+use App\Actions\Order\UpsertOrderAction;
 use App\Services\Shared\BaseService;
 
 final class OrderService extends BaseService
@@ -13,12 +13,13 @@ final class OrderService extends BaseService
     protected string $path = 'api/orders';
 
     /**
+     * @param string $username
      * @param string $dateFrom
      * @param string $dateTo
      * @param int $limit
      * @return int
      */
-    public function store(string $dateFrom, string $dateTo, int $limit): int
+    public function store(string $username, string $dateFrom, string $dateTo, int $limit): int
     {
         $apiData = $this->service->getApiData($this->path, $dateFrom, $dateTo, $limit);
 
@@ -26,7 +27,7 @@ final class OrderService extends BaseService
 
         foreach ($chunkData as $chunk) {
             foreach ($chunk as $datum) {
-                CreateOrderAction::execute($datum);
+                UpsertOrderAction::execute($datum, $username);
             }
         }
 
