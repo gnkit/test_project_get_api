@@ -15,6 +15,7 @@ class TokenType extends Model
      */
     protected $fillable = [
         'name',
+        'api_service_id',
     ];
 
     /**
@@ -22,6 +23,14 @@ class TokenType extends Model
      */
     public function token(): BelongsTo
     {
-        return $this->belongsTo(TokenType::class);
+        return $this->belongsTo(ApiService::class);
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function apiService(): BelongsTo
+    {
+        return $this->belongsTo(ApiService::class);
     }
 }

@@ -16,7 +16,6 @@ class ApiService extends Model
      */
     protected $fillable = [
         'name',
-        'token_type_id',
     ];
 
     /**

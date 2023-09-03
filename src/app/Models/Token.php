@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Token extends Model
 {
@@ -16,6 +17,7 @@ class Token extends Model
     protected $fillable = [
         'account_id',
         'api_service_id',
+        'token_type_id',
         'value',
     ];
 
@@ -33,5 +35,13 @@ class Token extends Model
     public function apiService(): BelongsTo
     {
         return $this->belongsTo(ApiService::class);
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function tokenType(): HasOne
+    {
+        return $this->hasOne(TokenType::class);
     }
 }

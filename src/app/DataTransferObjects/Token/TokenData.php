@@ -10,12 +10,14 @@ final class TokenData extends Data
      * @param int|null $id
      * @param int $account_id
      * @param int $api_service_id
+     * @param int $token_type_id
      * @param string $value
      */
     public function __construct(
         public readonly ?int   $id,
         public readonly int    $account_id,
         public readonly int    $api_service_id,
+        public readonly int    $token_type_id,
         public readonly string $value,
     )
     {
@@ -29,6 +31,7 @@ final class TokenData extends Data
         return [
             'account_id' => ['required', 'integer', 'exists:companies,id'],
             'api_service_id' => ['required', 'integer', 'exists:api_services,id'],
+            'token_type_id' => ['required', 'integer', 'exists:token_types,id'],
             'value' => ['required', 'string', 'max:512'],
         ];
     }

@@ -4,6 +4,8 @@ namespace App\Console\Commands;
 
 use App\Actions\Account\GetIdUsernameAccountAction;
 use App\Actions\ApiService\GetIdNameApiServiceAction;
+use App\Actions\ApiService\GetIdNameTypeTokenOfApiServiceAction;
+use App\Actions\Token\ExistsTokenTypeAction;
 use App\Actions\Token\UpsertTokenAction;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
@@ -42,6 +44,15 @@ class CreateToken extends Command
                 label: 'Select api service',
                 options: GetIdNameApiServiceAction::execute('name', 'id'),
                 scroll: 10
+            );
+
+            $datum['token_type_id'] = select(
+                label: 'Select type of token',
+                options: GetIdNameTypeTokenOfApiServiceAction::execute($datum['api_service_id']),
+                scroll: 10,
+                validate: fn(string $value) => ExistsTokenTypeAction::execute($datum, $value)
+                    ? 'Token already exists'
+                    : null,
             );
 
             $datum['value'] = Str::random(64);

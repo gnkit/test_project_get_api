@@ -16,6 +16,8 @@ return new class extends Migration {
             $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
             $table->unsignedBigInteger('api_service_id');
             $table->foreign('api_service_id')->references('id')->on('api_services')->onDelete('cascade');
+            $table->unsignedBigInteger('token_type_id');
+            $table->foreign('token_type_id')->references('id')->on('token_types')->onDelete('cascade');
             $table->string('value', 512);
             $table->timestamps();
         });

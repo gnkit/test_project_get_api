@@ -22,6 +22,7 @@ final class UpsertTokenAction
             [
                 'account_id' => $data->account_id,
                 'api_service_id' => $data->api_service_id,
+                'token_type_id' => $data->token_type_id,
                 'value' => $data->value,
             ],
         );

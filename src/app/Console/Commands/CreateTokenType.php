@@ -2,9 +2,11 @@
 
 namespace App\Console\Commands;
 
+use App\Actions\ApiService\GetIdNameApiServiceAction;
 use App\Actions\TokenType\UpsertTokenTypeAction;
 use Illuminate\Console\Command;
 use Throwable;
+use function Laravel\Prompts\select;
 use function Laravel\Prompts\text;
 
 class CreateTokenType extends Command
@@ -30,8 +32,14 @@ class CreateTokenType extends Command
     {
         try {
             $datum['name'] = text(
-                label: 'Please, enter a type of token',
-                required: 'A type of token is required.'
+                label: 'Please, enter name of token',
+                required: 'Name of token is required.'
+            );
+
+            $datum['api_service_id'] = select(
+                label: 'Select type of token',
+                options: GetIdNameApiServiceAction::execute('name', 'id'),
+                scroll: 10
             );
 
             $tokenType = UpsertTokenTypeAction::execute($datum);

@@ -21,6 +21,7 @@ final class UpsertTokenTypeAction
             ],
             [
                 'name' => $data->name,
+                'api_service_id' => $data->api_service_id,
             ],
         );
     }
