@@ -13,6 +13,7 @@ class Sale extends Model
      * @var string[]
      */
     protected $fillable = [
+        'account_id',
         'g_number',
         'date',
         'last_change_date',

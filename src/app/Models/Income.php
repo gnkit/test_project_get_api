@@ -13,6 +13,7 @@ class Income extends Model
      * @var string[]
      */
     protected $fillable = [
+        'account_id',
         'income_id',
         'number',
         'date',

@@ -13,6 +13,7 @@ class Stock extends Model
      * @var string[]
      */
     protected $fillable = [
+        'account_id',
         'date',
         'last_change_date',
         'supplier_article',
