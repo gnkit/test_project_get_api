@@ -87,10 +87,10 @@ final class DataService
      * @param $endpoint
      * @return string
      */
-    private function getAction($endpoint): string
+    public function getAction($endpoint): string
     {
         $actionName = ucfirst(substr($endpoint, 0, -1));
 
-        return 'App\Actions\\' . $actionName . '\Create' . $actionName . 'Action';
+        return 'App\Actions\\' . $actionName . '\GetAll' . $actionName . 'Action';
     }
 }
