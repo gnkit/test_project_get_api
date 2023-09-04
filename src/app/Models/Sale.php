@@ -46,6 +46,8 @@ class Sale extends Model
      * @var string[]
      */
     protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:i:s',
+        'updated_at' => 'datetime:Y-m-d H:i:s',
         'date' => 'date:Y-m-d',
         'last_change_date' => 'date:Y-m-d',
     ];

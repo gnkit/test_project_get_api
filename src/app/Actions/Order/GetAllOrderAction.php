@@ -14,7 +14,7 @@ final class GetAllOrderAction
      * @param $date
      * @return Collection
      */
-    public static function execute($username, $date):Collection
+    public static function execute($username, $date): Collection
     {
         $account = Account::where('username', '=', $username)->first();
 

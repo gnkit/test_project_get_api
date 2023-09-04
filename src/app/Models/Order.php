@@ -35,6 +35,8 @@ class Order extends Model
     ];
 
     protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:i:s',
+        'updated_at' => 'datetime:Y-m-d H:i:s',
         'date' => 'datetime:Y-m-d H:i:s',
         'last_change_date' => 'datetime:Y-m-d H:i:s',
     ];
