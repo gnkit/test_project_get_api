@@ -26,7 +26,7 @@ final class UpsertStockAction
         if ($stock) {
             $datum->account_id = $stock->account_id;
             $data = StockData::from($datum);
-            return $stock->save([...$data->all()]);
+            return $stock->update([...$data->all()]);
         } else {
             $datum->account_id = $account->id;
             $data = StockData::from($datum);

@@ -25,7 +25,7 @@ final class UpsertIncomeAction
         if ($income) {
             $datum->account_id = $income->account_id;
             $data = IncomeData::from($datum);
-            return $income->save([...$data->all()]);
+            return $income->update([...$data->all()]);
         } else {
             $datum->account_id = $account->id;
             $data = IncomeData::from($datum);

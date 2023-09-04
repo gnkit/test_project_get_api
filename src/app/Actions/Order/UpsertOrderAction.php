@@ -25,7 +25,7 @@ final class UpsertOrderAction
         if ($order) {
             $datum->account_id = $order->account_id;
             $data = OrderData::from($datum);
-            return $order->save([...$data->all()]);
+            return $order->update([...$data->all()]);
         } else {
             $datum->account_id = $account->id;
             $data = OrderData::from($datum);

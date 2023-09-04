@@ -25,7 +25,7 @@ final class UpsertSaleAction
         if ($sale) {
             $datum->account_id = $sale->account_id;
             $data = SaleData::from($datum);
-            return $sale->save([...$data->all()]);
+            return $sale->update([...$data->all()]);
         } else {
             $datum->account_id = $account->id;
             $data = SaleData::from($datum);
