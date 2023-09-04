@@ -25,4 +25,4 @@ php artisan create-office\
 php artisan create-account\
 php artisan create-apiservice\
 php artisan create-tokentype\
-php artisan create-token\
+php artisan create-token<br>
