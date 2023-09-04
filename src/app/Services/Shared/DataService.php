@@ -54,6 +54,7 @@ final class DataService
         while (null !== $linkNext) {
             $url = "$host/$path?dateFrom=$dateFrom&dateTo=$dateTo&page=$page&key=$key&limit=$limit";
             $response = Http::get($url);
+            $response->throwIf($response->failed());
             $data = json_decode($response->body());
             sleep(1);
             $linkNext = $data->links->next;

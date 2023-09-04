@@ -68,7 +68,9 @@ class UpdateAllData extends Command
         } catch (Throwable $exception) {
 
             report($exception);
-            $this->error('Requests failed. Try again later' . PHP_EOL . $exception->getMessage() . PHP_EOL);
+            $this->error('Requests failed. Try again later' . PHP_EOL
+                . $exception->getCode() . PHP_EOL
+                . $exception->getMessage() . PHP_EOL);
         }
     }
 }
