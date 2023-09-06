@@ -20,7 +20,7 @@ final class GetAllOrderAction
 
         if (null !== $date) {
             return Order::where('account_id', '=', $account->id)
-                ->whereBetween('created_at', [$date, Carbon::tomorrow()->format('Y-m-d H:i:s'),])
+                ->whereBetween('date', [$date, Carbon::tomorrow()->format('Y-m-d H:i:s'),])
                 ->get();
         }
 
